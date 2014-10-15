@@ -117,7 +117,7 @@ class App(Daemon):
 To: %s
 Subject: Virustotal report
 
-%s""" % (self.from_, self.to, response)
+%s""" % (self.from_, self.to, dumps(response, sort_keys=False, indent=4))
 
                 self.send(msg)
                 logging.info("Sent report for "+filepath)
