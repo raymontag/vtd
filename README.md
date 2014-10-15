@@ -15,6 +15,12 @@ API-Key - Your VirusTotal API key
 DL folder - The folder where your honeypot or whatever download the files
 ST folder - The folder where the files and reports should saved to
 
+Requirements:
+-------------
+
+* Python 2.x
+* virustotal-api https://github.com/blacktop/virustotal-api
+
 Warning: This is just a really quick&dirty implementation. Adjust it to your needs.
 
 I'm looking forward to suggestions or merge requests.
