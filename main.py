@@ -42,6 +42,8 @@ class App(Daemon):
 
     def run(self):
         # Touch known_hashes
+        if not isdir(self.stfolder):
+            makedirs(self.stfolder)
         open(join(self.stfolder, "known_hashes"), "a").close()
         # Read out known_hashes
         hash_handler = open(join(self.stfolder, "known_hashes"), "r+")
