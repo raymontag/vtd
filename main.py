@@ -6,7 +6,7 @@ import smtplib
 from datetime import date, datetime
 from hashlib import sha256
 from json import dumps
-from os import listdir, makedirs, remove
+from os import listdir, makedirs, remove, stat
 from os.path import expanduser, realpath, isdir, isfile, join
 from time import sleep
 from shutil import move
@@ -65,6 +65,12 @@ class App(Daemon):
             datestring = str(year)+"-"+str(month)+"-"+str(day)
 
             for i in dlcontent:
+                # Check if download of file hash finished
+                size = stat(join(self.dlfolder, i)).st_size
+                sleep(1)
+                if if stat(join(self.dlfolder, i)).st_size != size:
+                    continue
+
                 with open(join(self.dlfolder, i), "rb") as h:
                     # Hash file in dl folder and look if it's known
                     hashit = sha256()
