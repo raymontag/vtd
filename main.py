@@ -68,7 +68,7 @@ class App(Daemon):
                 # Check if download of file hash finished
                 size = stat(join(self.dlfolder, i)).st_size
                 sleep(1)
-                if if stat(join(self.dlfolder, i)).st_size != size:
+                if stat(join(self.dlfolder, i)).st_size != size:
                     continue
 
                 with open(join(self.dlfolder, i), "rb") as h:
