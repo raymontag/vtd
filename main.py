@@ -131,6 +131,18 @@ Subject: Virustotal report
             else:
                 # Submit the unknown file
                 if scan_flag:
+                    # Workaround for download bug
+                    # Another test for unfinished downloads
+                    # Sadly as the file is already moved
+                    # the file is lost for analysis :(
+                    with open(filepath, "rb") as h:
+                        hashit = sha256()
+                        hashit.update(h.read())
+                        if hashit.hexdigest() != hashdigest:
+                            logging.info("File for submission has another hash as in download folder!")
+                            logging.info("Filepath is %s" % (filepath))
+                            break
+
                     response = self.vt.scan_file(filepath)
                     msg = """From: %s
 To: %s
